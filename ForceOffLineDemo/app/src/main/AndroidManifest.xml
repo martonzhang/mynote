@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.marton.offline" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".AppActivity" >
+        </activity>
+        <activity
+            android:name=".BaseActivity"  >
+        </activity>
+        <activity
+            android:name=".DialogActivity"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <receiver android:name=".OffLineBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.marton.broadcast.FORCE_OFFLINE" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
