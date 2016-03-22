@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleLocalSettings">
+    <option name="modificationStamps">
+      <map>
+        <entry key="E:/AndroidQQBaseWeather/QQLite" value="1444291216108" />
+        <entry key="E:/AndroidQQHonBao/HongBao" value="5784120376650" />
+        <entry key="E:/AndroidQQHonBao/QQLite" value="1445392252284" />
+        <entry key="E:/AndroidQQLite_trunk/QQLite" value="1436853058524" />
+        <entry key="E:/AndroidQQTrunk/QQLite" value="1454379654081" />
+        <entry key="E:/AndroidQQWeather/QQLite" value="1442580908565" />
+        <entry key="E:/AndroidQQ_BaseWeather/QQLite" value="1438939080978" />
+        <entry key="E:/AndroidQQ_Lite_proj/QQLite" value="1430107465296" />
+        <entry key="E:/AndroidQQ_Test/QQLite" value="1441597442393" />
+        <entry key="$PROJECT_DIR$/../ExplosionField-master" value="5783680058938" />
+        <entry key="$PROJECT_DIR$/../HongbaoAnimation" value="4336594206000" />
+        <entry key="$PROJECT_DIR$/../TravelTrack" value="1430829205394" />
+        <entry key="E:/QQHongBao/QQLite" value="1447393185287" />
+        <entry key="E:/QQHongBaoTwo/QQLite" value="1450752402737" />
+        <entry key="E:/TroopMemberSearch/QQLite" value="1453370148819" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+</project>
+
