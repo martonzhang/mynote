@@ -20,12 +20,12 @@ public class CoolWeatherDB {
     /**
      * 数据库名
      */
-    public static final String DB_NAME = "cool_weather";
+    public static final String DB_NAME = "CoolWeather.DB";
 
     /**
      *  数据库版本
      */
-    public static final int VERSION = 1;
+    public static final int VERSION = 4;
 
     private static CoolWeatherDB mCoolWeatherDB;
 
@@ -44,7 +44,7 @@ public class CoolWeatherDB {
     public static CoolWeatherDB getmCoolWeatherDB(Context context){
         if(mCoolWeatherDB == null){
             synchronized (CoolWeatherDB.class){
-                if(mCoolWeatherDB != null){
+                if(mCoolWeatherDB == null){
                     mCoolWeatherDB = new CoolWeatherDB(context);
                 }
             }
@@ -93,14 +93,69 @@ public class CoolWeatherDB {
         }
     }
 
-//    public List<Province> loadProvinces(){
-//        List<Province> list = new ArrayList<Province>();
-//        Cursor cursor = mDB.query("Province",null,null,null,null,null,null);
-//        if(cursor.moveToFirst()){
-//            do
-//        }
-//
-//        return list;
-//    }
+    /**
+     * 从数据库中读取省的信息
+     * @return
+     */
+    public List<Province> loadProvinces(){
+        List<Province> list = new ArrayList<Province>();
+        Cursor cursor = mDB.query("Province",null,null,null,null,null,null);
+        if(cursor.moveToFirst()){
+            do{
+                Province pv = new Province();
+                pv.setmId(cursor.getInt(cursor.getColumnIndex("id")));
+                pv.setmProvinceName(cursor.getString(cursor.getColumnIndex("province_name")));
+                pv.setmProvinceCode(cursor.getString(cursor.getColumnIndex("province_code")));
+                list.add(pv);
+            }while(cursor.moveToNext());
+        }
+        if(cursor != null){
+            cursor.close();
+        }
 
+        return list;
+    }
+
+    /**
+     * 从数据库中读取某省下的所有市
+     * @param provinceId
+     * @return
+     */
+    public List<City> loadCities(int provinceId){
+        List<City> list = new ArrayList<City>();
+        Cursor cursor = mDB.query("City",null,"province_id = ?",new String[]{String.valueOf(provinceId)},null,null,null);
+        if(cursor.moveToFirst()){
+            do {
+                City city = new City();
+                city.setmId(cursor.getInt(cursor.getColumnIndex("id")));
+                city.setmCityCode(cursor.getString(cursor.getColumnIndex("city_code")));
+                city.setmCityName(cursor.getString(cursor.getColumnIndex("city_name")));
+                city.setmProvinceId(provinceId);
+            }while (cursor.moveToNext());
+        }
+        return list;
+    }
+
+    /**
+     * 从数据库中读取某市下的所有县
+     * @param cityId
+     * @return
+     */
+    public List<Country> loadCountries(int cityId){
+        List<Country> list = new ArrayList<Country>();
+        Cursor cursor = mDB.query("Country",null,"city_id = ?",new String[] {String.valueOf(cityId)},null,null,null);
+        if(cursor.moveToFirst()){
+            do{
+              Country country = new Country();
+                country.setmId(cursor.getInt(cursor.getColumnIndex("id")));
+                country.setmCountryName(cursor.getString(cursor.getColumnIndex("country_name")));
+                country.setmCountryCode(cursor.getString(cursor.getColumnIndex("country_code")));
+                country.setmCityId(cityId);
+            }while (cursor.moveToNext());
+        }
+        if(cursor != null){
+            cursor.close();
+        }
+        return list;
+    }
 }
