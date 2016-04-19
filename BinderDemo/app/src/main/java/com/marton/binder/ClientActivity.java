@@ -36,12 +36,28 @@ public class ClientActivity extends Activity implements View.OnClickListener{
         public void onServiceConnected(ComponentName name, IBinder service) {
             Log.i(TAG,"onServiceConnected in activity");
             mBookManager = IBookManager.Stub.asInterface(service);
+            try{
+                service.linkToDeath(mDeathRecipient,0);
+            }catch (RemoteException e){
+                Toast.makeText(ClientActivity.this, "remoteException", Toast.LENGTH_SHORT).show();
+            }
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
             Log.i(TAG,"onServiceDisconnected in activity");
-            mBookManager = null;
+            if(mBookManager != null){
+                mBookManager.asBinder().unlinkToDeath(mDeathRecipient,0);
+                mBookManager = null;
+            }
+        }
+    };
+
+    private IBinder.DeathRecipient mDeathRecipient = new IBinder.DeathRecipient() {
+        @Override
+        public void binderDied() {
+            Intent intent = new Intent("android.intent.action.remoteservice");
+            bindService(intent,mSConnection,BIND_AUTO_CREATE);
         }
     };
 
