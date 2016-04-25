@@ -11,6 +11,7 @@ import com.marton.aidl.IBookManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by marton on 16/4/16.
@@ -19,7 +20,7 @@ public class RemoteService extends Service {
 
     private static final String TAG = "RemoteDemo";
 
-    private List<Book> mBookList = new ArrayList<Book>();
+    private CopyOnWriteArrayList<Book> mBookList = new CopyOnWriteArrayList<Book>();
 
     IBookManager.Stub mBinder = new IBookManager.Stub() {
         @Override
