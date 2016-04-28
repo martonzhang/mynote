@@ -79,7 +79,7 @@ public class RemoteService extends Service {
             Log.i(TAG,"run onCreate in remote service");
             while (count++ < 5) {
                 try{
-                    Thread.sleep(3000);
+                    Thread.sleep(5000);
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }

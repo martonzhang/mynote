@@ -56,7 +56,6 @@ public class ClientActivity extends Activity implements View.OnClickListener,Han
             Log.i(TAG,"onServiceDisconnected in activity");
             if(mBookManager != null){
                 mBookManager.asBinder().unlinkToDeath(mDeathRecipient,0);
-                mBookManager = null;
             }
         }
     };
@@ -76,6 +75,7 @@ public class ClientActivity extends Activity implements View.OnClickListener,Han
     private IBinder.DeathRecipient mDeathRecipient = new IBinder.DeathRecipient() {
         @Override
         public void binderDied() {
+            Log.i(TAG,"binderDied");
             Intent intent = new Intent("android.intent.action.remoteservice");
             bindService(intent,mSConnection,BIND_AUTO_CREATE);
         }
